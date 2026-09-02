@@ -1,0 +1,41 @@
+name: cash_rich_assgn
+description: "CashRich Full-Stack E-commerce Product Browsing Application"
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP Client
+  http: ^1.1.0
+
+  # State Management
+  provider: ^6.1.0
+
+  # Routing (Modern Navigation)
+  go_router: ^12.0.0
+
+  # UI/UX
+  cupertino_icons: ^1.0.2
+  google_fonts: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+    - family: CustomFont
+      fonts:
+        - asset: assets/fonts/custom.ttf
