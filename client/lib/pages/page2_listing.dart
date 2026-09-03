@@ -150,133 +150,137 @@ class _Page2ListingScreenState extends State<Page2ListingScreen> {
   }
 
   /// Build category dropdown
-  // Widget _buildCategoryDropdown(BuildContext context, ProductProvider provider) {
-  //   return DropdownButtonFormField<String>(
-  //     value: provider.selectedCategory,
-  //     isExpanded: true,
-  //     decoration: InputDecoration(
-  //       isDense: true,
-  //       border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
-  //       filled: true,
-  //       fillColor: Colors.white,
-  //       contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-  //     ),
-  //     items: [
-  //       const DropdownMenuItem(value: 'all', child: Text('All Categories')),
-  //       ...provider.categories.map(
-  //         (cat) => DropdownMenuItem(value: cat, child: Text(cat)),
-  //       ),
-  //     ],
-  //     onChanged: (value) {
-  //       if (value != null) {
-  //         provider.updateCategory(value);
-  //         provider.fetchProducts();
-  //       }
-  //     },
-  //   );
-  // }
+  Widget _buildCategoryDropdown(
+      BuildContext context, ProductProvider provider) {
+    return DropdownButtonFormField<String>(
+      value: provider.selectedCategory,
+      isExpanded: true,
+      decoration: InputDecoration(
+        isDense: true,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+      ),
+      items: [
+        const DropdownMenuItem(value: 'all', child: Text('All Categories')),
+        ...provider.categories.map(
+          (cat) => DropdownMenuItem(value: cat, child: Text(cat)),
+        ),
+      ],
+      onChanged: (value) {
+        if (value != null) {
+          provider.updateCategory(value);
+          provider.fetchProducts();
+        }
+      },
+    );
+  }
 
-  // /// Build sort dropdown
-  // Widget _buildSortDropdown(BuildContext context, ProductProvider provider) {
-  //   return DropdownButtonFormField<String>(
-  //     value: provider.selectedSort,
-  //     isExpanded: true,
-  //     decoration: InputDecoration(
-  //       isDense: true,
-  //       border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
-  //       filled: true,
-  //       fillColor: Colors.white,
-  //       contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-  //     ),
-  //     items: const [
-  //       DropdownMenuItem(value: 'asc', child: Text('Low to High 📈')),
-  //       DropdownMenuItem(value: 'desc', child: Text('High to High 📉')),
-  //     ],
-  //     onChanged: (value) {
-  //       if (value != null) {
-  //         provider.updateSort(value);
-  //         provider.fetchProducts();
-  //       }
-  //     },
-  //   );
-  // }
+  /// Build sort dropdown
+  Widget _buildSortDropdown(BuildContext context, ProductProvider provider) {
+    return DropdownButtonFormField<String>(
+      value: provider.selectedSort,
+      isExpanded: true,
+      decoration: InputDecoration(
+        isDense: true,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+      ),
+      items: const [
+        DropdownMenuItem(value: 'asc', child: Text('Low to High 📈')),
+        DropdownMenuItem(value: 'desc', child: Text('High to High 📉')),
+      ],
+      onChanged: (value) {
+        if (value != null) {
+          provider.updateSort(value);
+          provider.fetchProducts();
+        }
+      },
+    );
+  }
 
   /// Build products list/grid
-  // Widget _buildProductsList(
-  //   BuildContext context,
-  //   bool isMobile,
-  //   ProductProvider provider,
-  // ) {
-  //   // Show loading on first load
-  //   if (provider.isLoading && provider.allLoadedProducts.isEmpty) {
-  //     return Center(
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.blue[700])),
-  //           const SizedBox(height: 16),
-  //           const Text('Loading products...'),
-  //         ],
-  //       ),
-  //     );
-  //   }
+  Widget _buildProductsList(
+    BuildContext context,
+    bool isMobile,
+    ProductProvider provider,
+  ) {
+    // Show loading on first load
+    if (provider.isLoading && provider.allLoadedProducts.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(Colors.blue[700])),
+            const SizedBox(height: 16),
+            const Text('Loading products...'),
+          ],
+        ),
+      );
+    }
 
-  //   // Show error
-  //   if (provider.errorMessage != null) {
-  //     return Center(
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           const Icon(Icons.error, size: 48, color: Colors.red),
-  //           const SizedBox(height: 16),
-  //           Text('Error: ${provider.errorMessage}'),
-  //           const SizedBox(height: 16),
-  //           ElevatedButton(
-  //             onPressed: () => provider.fetchProducts(),
-  //             child: const Text('Retry'),
-  //           ),
-  //         ],
-  //       ),
-  //     );
-  //   }
+    // Show error
+    if (provider.errorMessage != null) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error, size: 48, color: Colors.red),
+            const SizedBox(height: 16),
+            Text('Error: ${provider.errorMessage}'),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => provider.fetchProducts(),
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      );
+    }
 
-  //   // Show no products found
-  //   if (provider.allLoadedProducts.isEmpty) {
-  //     return Center(
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           const Icon(Icons.inbox, size: 48, color: Colors.grey),
-  //           const SizedBox(height: 16),
-  //           const Text('No products found'),
-  //           const SizedBox(height: 8),
-  //           const Text('Try adjusting your filters', style: TextStyle(color: Colors.grey)),
-  //         ],
-  //       ),
-  //     );
-  //   }
+    // Show no products found
+    if (provider.allLoadedProducts.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.inbox, size: 48, color: Colors.grey),
+            const SizedBox(height: 16),
+            const Text('No products found'),
+            const SizedBox(height: 8),
+            const Text('Try adjusting your filters',
+                style: TextStyle(color: Colors.grey)),
+          ],
+        ),
+      );
+    }
 
-  //   // Build grid or list based on screen size
-  //   return GridView.builder(
-  //     controller: _scrollController,
-  //     padding: EdgeInsets.all(isMobile ? 8 : 12),
-  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //       crossAxisCount: isMobile ? 2 : 4,
-  //       crossAxisSpacing: isMobile ? 8 : 12,
-  //       mainAxisSpacing: isMobile ? 8 : 12,
-  //       childAspectRatio: 0.7,
-  //     ),
-  //     itemCount: provider.allLoadedProducts.length + (provider.isLoadingMore ? 1 : 0),
-  //     itemBuilder: (context, index) {
-  //       if (index >= provider.allLoadedProducts.length) {
-  //         return const Center(child: CircularProgressIndicator());
-  //       }
+    // Build grid or list based on screen size
+    return GridView.builder(
+      controller: _scrollController,
+      padding: EdgeInsets.all(isMobile ? 8 : 12),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: isMobile ? 2 : 4,
+        crossAxisSpacing: isMobile ? 8 : 12,
+        mainAxisSpacing: isMobile ? 8 : 12,
+        childAspectRatio: 0.7,
+      ),
+      itemCount:
+          provider.allLoadedProducts.length + (provider.isLoadingMore ? 1 : 0),
+      itemBuilder: (context, index) {
+        if (index >= provider.allLoadedProducts.length) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-  //       final product = provider.allLoadedProducts[index];
-  //       return _buildProductCard(context, product);
-  //     },
-  //   );
-  // }
+        final product = provider.allLoadedProducts[index];
+        return _buildProductCard(context, product);
+      },
+    );
+  }
 
   /// Build individual product card
   // Widget _buildProductCard(BuildContext context, Product product) {
