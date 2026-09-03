@@ -283,86 +283,88 @@ class _Page2ListingScreenState extends State<Page2ListingScreen> {
   }
 
   /// Build individual product card
-  // Widget _buildProductCard(BuildContext context, Product product) {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       // Navigate to Page 3 with product data
-  //       context.push('/product/${product.id}', extra: product);
-  //     },
-  //     child: Card(
-  //       elevation: 2,
-  //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           // Product image placeholder
-  //           Expanded(
-  //             child: Container(
-  //               width: double.infinity,
-  //               decoration: BoxDecoration(
-  //                 color: Colors.blue[100],
-  //                 borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-  //               ),
-  //               child: Center(
-  //                 child: Icon(
-  //                   Icons.shopping_bag,
-  //                   size: 40,
-  //                   color: Colors.blue[700],
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
+  Widget _buildProductCard(BuildContext context, Product product) {
+    return GestureDetector(
+      onTap: () {
+        // Navigate to Page 3 with product data
+        context.push('/product/${product.id}', extra: product);
+      },
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Product image placeholder
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(8)),
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.shopping_bag,
+                    size: 40,
+                    color: Colors.blue[700],
+                  ),
+                ),
+              ),
+            ),
 
-  //           // Product details
-  //           Padding(
-  //             padding: const EdgeInsets.all(8),
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: [
-  //                 // Product name
-  //                 Text(
-  //                   product.name,
-  //                   maxLines: 2,
-  //                   overflow: TextOverflow.ellipsis,
-  //                   style: const TextStyle(
-  //                     fontWeight: FontWeight.w600,
-  //                     fontSize: 12,
-  //                   ),
-  //                 ),
-  //                 const SizedBox(height: 4),
+            // Product details
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Product name
+                  Text(
+                    product.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
 
-  //                 // Category badge
-  //                 Container(
-  //                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-  //                   decoration: BoxDecoration(
-  //                     color: Colors.blue[50],
-  //                     borderRadius: BorderRadius.circular(4),
-  //                   ),
-  //                   child: Text(
-  //                     product.category,
-  //                     style: TextStyle(
-  //                       fontSize: 10,
-  //                       color: Colors.blue[700],
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 const SizedBox(height: 6),
+                  // Category badge
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Colors.blue[50],
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      product.category,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.blue[700],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
 
-  //                 // Price
-  //                 Text(
-  //                   '\$${product.price.toStringAsFixed(2)}',
-  //                   style: TextStyle(
-  //                     fontSize: 14,
-  //                     fontWeight: FontWeight.bold,
-  //                     color: Colors.green[700],
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+                  // Price
+                  Text(
+                    '\$${product.price.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green[700],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
